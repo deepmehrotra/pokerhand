@@ -2,7 +2,17 @@
 
 Spring boot app to handle poker hand creation and sorting
 --Testing change propagation
-  private int findHigherOfSameCardType(PokerHand o) {
+ 
+ 
+  @Override
+    public int compareTo(PokerHand o) {
+        if(!o.cardType.equals(this.cardType)){
+            return Constants.rankOfHandsMap.get(o.cardType)<Constants.rankOfHandsMap.get(this.cardType)?1:-1;
+        }
+        return findHigherOfSameCardType(o);
+    }
+
+    private int findHigherOfSameCardType(PokerHand o) {
 
         int thisHighRank;
         int inputHighRank;
